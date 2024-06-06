@@ -4,6 +4,7 @@ from fastapi.responses import FileResponse
 from pytube import YouTube
 import os
 
+
 def download_video(url, output_path='./'):
     try:
         video = YouTube(url)
@@ -19,6 +20,7 @@ def download_video(url, output_path='./'):
     except Exception as e:
         return {"error": str(e)}
 
+
 def delete_all_files(path):
     videos_deleted = []
     try:
@@ -29,6 +31,7 @@ def delete_all_files(path):
         return videos_deleted
     except Exception as e:
         return {"error": str(e)}
+
 
 app = FastAPI()
 
@@ -49,14 +52,15 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return "Hola este es el servidor de descarga de videos de youtube! " \
-             "Para descargar un video de youtube, ingresa a la ruta /yt/?urlYt= y agrega el nombre del video despues de la barra. " \
-
+           "Para descargar un video de youtube, ingresa a la ruta /yt/?urlYt= y agrega el nombre del video despues de la barra. "
 # example: http://localhost:8000/yt/?urlYt=https://www.youtube.com/watch?v=kPC_evpbwDM
+
 @app.get("/yt/")
 async def download_and_return_video(urlYt: str):
     video_info = download_video(urlYt, "./")
     file_path = f"{video_info['destination_path']}{video_info['filename']}"
     return FileResponse(file_path)
+
 
 @app.get("/delete_files/")
 async def delete_files():
