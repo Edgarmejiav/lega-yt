@@ -57,7 +57,7 @@ async def root():
 
 @app.get("/yt/")
 async def download_and_return_video(urlYt: str):
-    video_info = download_video(urlYt, "./")
+    video_info = download_video(urlYt, "/tmp")
     file_path = f"{video_info['destination_path']}{video_info['filename']}"
     return FileResponse(file_path)
 
