@@ -52,7 +52,7 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return "Hola este es el servidor de descarga de videos de youtube! " \
-           "Para descargar un video de youtube, ingresa a la ruta /yt/?urlYt= y agrega el nombre del video despues de la barra. "
+           "Para descargar un video de youtube, ingresa a la ruta yt/?urlYt=https://www.youtube.com/watch?v=kPC_evpbwDM y agrega el nombre del video despues de la barra. "
 # example: http://localhost:8000/yt/?urlYt=https://www.youtube.com/watch?v=kPC_evpbwDM
 
 @app.get("/yt/")
