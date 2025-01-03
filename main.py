@@ -5,7 +5,7 @@ from pytube import YouTube
 import os
 
 
-def download_video(url, output_path='./'):
+def download_video(url, output_path='/tmp'):
     try:
         video = YouTube(url)
         stream = video.streams.get_highest_resolution()
